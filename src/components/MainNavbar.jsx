@@ -70,9 +70,9 @@ const MainNavbar = () => {
 
   return (
     <Navbar
-      className={`mx-auto px-4 py-2 lg:px-8 lg:py-4 shadow-md bg-dark border-none ${
+      className={`mx-auto px-4 py-2 lg:px-8 lg:py-4 shadow-md bg-cyan-100 border-none ${
         isScrolled
-          ? "fixed top-0 left-0 z-50 bg-white max-w-full"
+          ? "fixed top-0 left-0 z-50 bg-cyan-100 max-w-full"
           : "max-w-screen-xl"
       }`}
     >

@@ -19,40 +19,53 @@ import {
   Input,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import ModalUser from "../modal/ModalUser";
+import ModalCreateUser from "../modal/users/ModalCreateUser";
+import { getDataUsers } from "../../services/apiServices";
+import { postDataUser } from "../../services/apiServices";
+import ModalDeleteUser from "../modal/users/ModalDeleteUser";
+import ModalUpdateUser from "../modal/users/ModalUpdateUser";
 
 const HomeAdmin = (props) => {
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
   const [addUser, setAddUser] = useState(false);
+  const [deleteUser, setDeleteUser] = useState(false);
+  const [dataDelete, setDataDelete] = useState([]);
+  const [updateModalUser, setUpdateModalUser] = useState(false);
+  const [dataUpdateUser, setDataUpdateUser] = useState([]);
 
-  const addUserButton = () => {
-    setAddUser(true);
+  const handleUserModalButton = () => {
+    setAddUser(!addUser);
   };
 
-  const closeUserButton = () => {
-    setAddUser(false);
+  const deleteUserModalButton = (user) => {
+    setDeleteUser(!deleteUser);
+    setDataDelete(user);
+  };
+
+  const updateUserModalButton = (user) => {
+    setUpdateModalUser(!updateModalUser);
+    setDataUpdateUser(user);
+    console.log(user);
   };
 
   const TABLE_HEAD = ["Image", "Email", "Username", "Role", ""];
 
-  const TABLE_ROWS = [
-    {
-      img: "https://docs.material-tailwind.com/img/logos/logo-spotify.svg",
-      name: "Spotify",
-      email: "nam@gmail.com",
-      username: "Nam",
-      role: "Admin",
-    },
-  ];
-
-  const getDataUsers = async () => {
-    let res = await axios.get("http://localhost:5000/users");
-    console.log(res);
-  };
+  // const TABLE_ROWS = users.map((user) => ({
+  //   img: user.image,
+  //   name: user.name,
+  //   email: user.email,
+  //   username: user.username,
+  //   role: user.role,
+  // }));
 
   useEffect(() => {
-    getDataUsers();
+    fetchDataUsers();
   }, []);
+
+  const fetchDataUsers = async () => {
+    let data = await getDataUsers();
+    setUsers(data);
+  };
 
   // const data = {
   //   image: image,
@@ -86,7 +99,7 @@ const HomeAdmin = (props) => {
                 variant="gradient"
                 className="flex items-center gap-3"
                 size="sm"
-                onClick={() => addUserButton()}
+                onClick={() => handleUserModalButton()}
               >
                 <PlusCircleIcon strokeWidth={2} className="h-4 w-4" /> Add
               </Button>
@@ -114,19 +127,19 @@ const HomeAdmin = (props) => {
               </tr>
             </thead>
             <tbody>
-              {TABLE_ROWS.map(({ img, username, email, role }, index) => {
-                const isLast = index === TABLE_ROWS.length - 1;
+              {users.map((user, index) => {
+                const isLast = index === users.length - 1;
                 const classes = isLast
                   ? "p-4"
                   : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={username}>
+                  <tr key={user.id}>
                     <td className={classes}>
                       <div className="flex items-center gap-3">
                         <Avatar
-                          src={img}
-                          alt={username}
+                          src={user.image}
+                          alt={user.username}
                           size="md"
                           className="border border-blue-gray-50 bg-blue-gray-50/50 object-contain p-1"
                         />
@@ -138,7 +151,7 @@ const HomeAdmin = (props) => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {email}
+                        {user.email}
                       </Typography>
                     </td>
                     <td className={classes}>
@@ -147,7 +160,7 @@ const HomeAdmin = (props) => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {username}
+                        {user.username}
                       </Typography>
                     </td>
 
@@ -157,17 +170,23 @@ const HomeAdmin = (props) => {
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {role}
+                        {user.role}
                       </Typography>
                     </td>
                     <td className={classes}>
                       <Tooltip content="Edit User">
-                        <IconButton variant="text">
+                        <IconButton
+                          variant="text"
+                          onClick={() => updateUserModalButton(user)}
+                        >
                           <PencilIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
                       <Tooltip content="Delete User">
-                        <IconButton variant="text">
+                        <IconButton
+                          variant="text"
+                          onClick={() => deleteUserModalButton(user)}
+                        >
                           <TrashIcon className="h-4 w-4" />
                         </IconButton>
                       </Tooltip>
@@ -199,10 +218,24 @@ const HomeAdmin = (props) => {
         </CardFooter>
       </Card>
 
-      <ModalUser
+      <ModalCreateUser
         addUser={addUser}
-        addUserButton={addUserButton}
-        closeUserButton={closeUserButton}
+        handleUserModalButton={handleUserModalButton}
+        fetchDataUsers={fetchDataUsers}
+      />
+
+      <ModalDeleteUser
+        deleteUser={deleteUser}
+        fetchDataUsers={fetchDataUsers}
+        deleteUserModalButton={deleteUserModalButton}
+        dataDelete={dataDelete}
+      />
+
+      <ModalUpdateUser
+        updateModalUser={updateModalUser}
+        dataUpdateUser={dataUpdateUser}
+        updateUserModalButton={updateUserModalButton}
+        fetchDataUsers={fetchDataUsers}
       />
     </div>
   );

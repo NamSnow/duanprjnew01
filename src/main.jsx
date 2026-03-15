@@ -10,23 +10,24 @@ import Signin from "./components/pages/Signin";
 import Todo from "./components/pages/Todo";
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import HomeAdmin from "./components/pages/HomeAdmin";
+import LayoutTodoList from "./layouts/LayoutTodoList";
+import AboutUs from "./components/pages/AboutUs";
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <ThemeProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-          </Route>
-          <Route path="/admin" element={<LayoutAdmin />}>
-            <Route index element={<HomeAdmin />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/todo" element={<Todo />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
-  </StrictMode>,
+  <ThemeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+        </Route>
+        <Route path="/admin" element={<LayoutAdmin />}>
+          <Route index element={<HomeAdmin />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/todo" element={<LayoutTodoList />} />
+      </Routes>
+    </BrowserRouter>
+  </ThemeProvider>,
 );

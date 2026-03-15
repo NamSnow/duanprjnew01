@@ -31,6 +31,7 @@ import {
   Bars3Icon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router";
 
 const AdminNavbar = () => {
   const [open, setOpen] = React.useState(0);
@@ -86,43 +87,7 @@ const AdminNavbar = () => {
                   }`}
                 />
               }
-            >
-              <ListItem className="p-0" selected={open === 1}>
-                <AccordionHeader
-                  onClick={() => handleOpen(1)}
-                  className="border-b-0 p-3"
-                >
-                  <ListItemPrefix>
-                    <PresentationChartBarIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  <Typography color="blue-gray" className="mr-auto font-normal">
-                    Dashboard
-                  </Typography>
-                </AccordionHeader>
-              </ListItem>
-              <AccordionBody className="py-1">
-                <List className="p-0">
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Analytics
-                  </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Reporting
-                  </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Projects
-                  </ListItem>
-                </List>
-              </AccordionBody>
-            </Accordion>
+            ></Accordion>
             <Accordion
               open={open === 2}
               icon={
@@ -133,65 +98,48 @@ const AdminNavbar = () => {
                   }`}
                 />
               }
-            >
-              <ListItem className="p-0" selected={open === 2}>
-                <AccordionHeader
-                  onClick={() => handleOpen(2)}
-                  className="border-b-0 p-3"
-                >
-                  <ListItemPrefix>
-                    <ShoppingBagIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  <Typography color="blue-gray" className="mr-auto font-normal">
-                    E-Commerce
-                  </Typography>
-                </AccordionHeader>
+            ></Accordion>
+            <Link to="/">
+              <ListItem>
+                <ListItemPrefix>
+                  <InboxIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Home
               </ListItem>
-              <AccordionBody className="py-1">
-                <List className="p-0">
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Orders
-                  </ListItem>
-                  <ListItem>
-                    <ListItemPrefix>
-                      <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
-                    </ListItemPrefix>
-                    Products
-                  </ListItem>
-                </List>
-              </AccordionBody>
-            </Accordion>
-            <hr className="my-2 border-blue-gray-50" />
-            <ListItem>
-              <ListItemPrefix>
-                <InboxIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Inbox
-              <ListItemSuffix>
-                <Chip
-                  value="14"
-                  size="sm"
-                  variant="ghost"
-                  color="blue-gray"
-                  className="rounded-full"
-                />
-              </ListItemSuffix>
-            </ListItem>
-            <ListItem>
-              <ListItemPrefix>
-                <UserCircleIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Profile
-            </ListItem>
-            <ListItem>
-              <ListItemPrefix>
-                <Cog6ToothIcon className="h-5 w-5" />
-              </ListItemPrefix>
-              Settings
-            </ListItem>
+            </Link>
+            <Link to="/about">
+              <ListItem>
+                <ListItemPrefix>
+                  <UserCircleIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                About
+              </ListItem>
+            </Link>
+            <Link to="/admin">
+              <ListItem>
+                <ListItemPrefix>
+                  <Cog6ToothIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Admin
+                <ListItemSuffix>
+                  <Chip
+                    value="14"
+                    size="sm"
+                    variant="ghost"
+                    color="blue-gray"
+                    className="rounded-full"
+                  />
+                </ListItemSuffix>
+              </ListItem>
+            </Link>
+            <Link to="/todo">
+              <ListItem>
+                <ListItemPrefix>
+                  <Cog6ToothIcon className="h-5 w-5" />
+                </ListItemPrefix>
+                Todolist
+              </ListItem>
+            </Link>
             <ListItem>
               <ListItemPrefix>
                 <PowerIcon className="h-5 w-5" />
@@ -199,39 +147,6 @@ const AdminNavbar = () => {
               Log Out
             </ListItem>
           </List>
-          <Alert
-            open={openAlert}
-            className="mt-auto"
-            onClose={() => setOpenAlert(false)}
-          >
-            <CubeTransparentIcon className="mb-4 h-12 w-12" />
-            <Typography variant="h6" className="mb-1">
-              Upgrade to PRO
-            </Typography>
-            <Typography variant="small" className="font-normal opacity-80">
-              Upgrade to Material Tailwind PRO and get even more components,
-              plugins, advanced features and premium.
-            </Typography>
-            <div className="mt-4 flex gap-3">
-              <Typography
-                as="a"
-                href="#"
-                variant="small"
-                className="font-medium opacity-80"
-                onClick={() => setOpenAlert(false)}
-              >
-                Dismiss
-              </Typography>
-              <Typography
-                as="a"
-                href="#"
-                variant="small"
-                className="font-medium"
-              >
-                Upgrade Now
-              </Typography>
-            </div>
-          </Alert>
         </Card>
       </Drawer>
     </>
