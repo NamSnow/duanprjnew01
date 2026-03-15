@@ -76,12 +76,7 @@ const ModalCreateUser = (props) => {
 
   return (
     <>
-      <Dialog
-        size="sm"
-        open={addUser}
-        handler={handleUserModalButton}
-        className="p-4 max-h-[90vh]"
-      >
+      <Dialog size="sm" open={addUser} className="p-4 max-h-[90vh]">
         <DialogHeader className="relative m-0 block">
           <Typography variant="h4" color="blue-gray">
             Add Users

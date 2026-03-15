@@ -22,7 +22,7 @@ const ModalDeleteUser = (props) => {
 
   return (
     <>
-      <Dialog open={deleteUser} handler={props.deleteUserModalButton}>
+      <Dialog open={deleteUser}>
         <DialogHeader>Notification.</DialogHeader>
         <DialogBody>
           You delete email: {dataDelete?.email}, name: {dataDelete?.username}
