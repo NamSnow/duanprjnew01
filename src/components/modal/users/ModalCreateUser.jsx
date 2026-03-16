@@ -103,14 +103,6 @@ const ModalCreateUser = (props) => {
                   className: "min-w-0",
                 }}
               />
-              <Button
-                size="sm"
-                color={email ? "gray" : "blue-gray"}
-                disabled={!email}
-                className="!absolute right-1 top-1 rounded"
-              >
-                Invite
-              </Button>
             </div>
 
             <div className="w-full">

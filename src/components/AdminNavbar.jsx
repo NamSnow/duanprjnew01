@@ -132,7 +132,7 @@ const AdminNavbar = () => {
                 </ListItemSuffix>
               </ListItem>
             </Link>
-            <Link to="/todo">
+            <Link to="/admin/todo">
               <ListItem>
                 <ListItemPrefix>
                   <Cog6ToothIcon className="h-5 w-5" />

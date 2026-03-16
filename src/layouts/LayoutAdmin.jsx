@@ -3,6 +3,7 @@ import AdminNavbar from "../components/AdminNavbar";
 import HomeAdmin from "../components/pages/HomeAdmin";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import { ToastContainer, toast } from "react-toastify";
+import { Outlet } from "react-router";
 
 const LayoutAdmin = (props) => {
   return (
@@ -10,7 +11,7 @@ const LayoutAdmin = (props) => {
       <AdminNavbar />
 
       <div>
-        <HomeAdmin />
+        <Outlet />
       </div>
 
       <ToastContainer

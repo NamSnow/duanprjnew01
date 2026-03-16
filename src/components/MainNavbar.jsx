@@ -46,7 +46,7 @@ const MainNavbar = () => {
       </Typography>
 
       <Typography as="li" variant="small" className="font-medium">
-        <NavLink to="/todo" className={navLinkClass}>
+        <NavLink to="/admin/todo" className={navLinkClass}>
           Todolist
         </NavLink>
       </Typography>
